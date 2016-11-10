@@ -26,6 +26,7 @@ $("#addBtn").on("click", function(){
         destination: trainDestination,
         frequency: trainfrequencyinMinutes,
         firstTrain: firstTrainTime
+        // dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
         // uploads train data
     database.ref().push(newTrain);
