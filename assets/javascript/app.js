@@ -76,17 +76,19 @@ $("#addBtn").on("click", function(){
 });
 
 // firebase event for adding trains to database and row in html when user adds entry
-database.ref().on("child_added", function(childSnapshot, prevChildKey){
+database.ref().on("child_added", function(childSnapshot){
  console.log(childSnapshot.val());
 
- $(".added-table").append("<tr>+<td>"+childSnapshot.val().trainName+"<td>"+childSnapshot.val().trainDestination+"<td>"+childSnapshot.val().trainfrequencyinMinutes+"<td>"+nextTrain+"<td>"+minsToNext);
+ $(".added-table").append("<tr>+<td>"+trainName+"<td>"+childSnapshot.val().trainDestination+"<td>"+childSnapshot.val().trainfrequencyinMinutes+"<td>"+nextTrain+"<td>"+minsToNext);
 
-
+function(errorObject){
     // console.log(trainName);
     // console.log(trainDestination);
     // console.log(trainfrequencyinMinutes);
     // console.log(firstTrainTime);
+}
 });
+
 
 
 
