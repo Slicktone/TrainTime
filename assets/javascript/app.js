@@ -28,11 +28,18 @@ $("#addBtn").on("click", function(){
         firstTrain: firstTrainTime
         // dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
-        // uploads train data
+
+
+    // uploads train data
     database.ref().push(newTrain);
+    var trainName = childSnapshot.val().train;
+    var trainDestination = childSnapshot.val().destination;
+    var trainfrequencyinMinutes = childSnapshot.val().frequency;
+    var firstTrainTime = childSnapshot.val().firstTrainTime;
+
     // **************************************************************************************************
     // Start moment.JS
-   
+
     var cleanTime = moment(time, "hh:mm").subtract(1, "years");
     console.log(cleanTime);
 
@@ -76,20 +83,16 @@ $("#addBtn").on("click", function(){
 });
 
 // firebase event for adding trains to database and row in html when user adds entry
+
 database.ref().on("child_added", function(childSnapshot){
  console.log(childSnapshot.val());
 
  $(".added-table").append("<tr>+<td>"+trainName+"<td>"+childSnapshot.val().trainDestination+"<td>"+childSnapshot.val().trainfrequencyinMinutes+"<td>"+nextTrain+"<td>"+minsToNext);
 
-function(errorObject){
+// function(errorObject){
     // console.log(trainName);
     // console.log(trainDestination);
     // console.log(trainfrequencyinMinutes);
     // console.log(firstTrainTime);
-}
+// }
 });
-
-
-
-
-
